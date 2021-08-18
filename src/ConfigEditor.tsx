@@ -8,8 +8,8 @@ const { FormField, Select } = LegacyForms;
 
 interface Props extends DataSourcePluginOptionsEditorProps<MyDataSourceOptions> {}
 
-const regionOptions: SelectableValue[] = regions.map(reg => ({ value: reg, label: reg }));
-const envOptions: SelectableValue[] = environments.map(env => ({ value: env, label: env }));
+const regionOptions: SelectableValue[] = regions.map((reg) => ({ value: reg, label: reg }));
+const envOptions: SelectableValue[] = environments.map((env) => ({ value: env, label: env }));
 
 export const ConfigEditor: FunctionComponent<Props> = ({ onOptionsChange, options }) => {
   const { jsonData } = options;
@@ -25,7 +25,7 @@ export const ConfigEditor: FunctionComponent<Props> = ({ onOptionsChange, option
   const onRegionChange = (value: SelectableValue) => {
     const jsonData = {
       ...options.jsonData,
-      region: value,
+      region: value.value,
     };
     onOptionsChange({ ...options, jsonData });
   };
@@ -33,7 +33,7 @@ export const ConfigEditor: FunctionComponent<Props> = ({ onOptionsChange, option
   const onEnvChange = (value: SelectableValue) => {
     const jsonData = {
       ...options.jsonData,
-      environment: value,
+      environment: value.value,
     };
     onOptionsChange({ ...options, jsonData });
   };
@@ -47,19 +47,19 @@ export const ConfigEditor: FunctionComponent<Props> = ({ onOptionsChange, option
           labelWidth={10}
           inputWidth={20}
           onChange={onPathChange}
-          value={jsonData.path || ''}
+          value={jsonData.tenancy || ''}
           placeholder="ocid1.tenancy.oc1..."
           required={true}
         />
       </div>
       <div className="gf-form">
         <InlineField label="Default Region" labelWidth={10}>
-          <Select options={regionOptions} onChange={onRegionChange} width={20}/>
+          <Select options={regionOptions} onChange={onRegionChange} width={20} />
         </InlineField>
       </div>
       <div className="gf-form">
         <InlineField label="Environment" labelWidth={10}>
-          <Select options={envOptions} onChange={onEnvChange} width={20}/>
+          <Select options={envOptions} onChange={onEnvChange} width={20} />
         </InlineField>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import defaults from 'lodash/defaults';
-
+import { defaults } from 'lodash';
 import React, { ChangeEvent, PureComponent } from 'react';
 import { LegacyForms } from '@grafana/ui';
 import { QueryEditorProps } from '@grafana/data';
